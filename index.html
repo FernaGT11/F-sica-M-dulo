@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Libro de Física Universitaria estilo Serway - Formato web continuo">
+    <title>Física Universitaria | Estilo Serway</title>
+    
+    <!-- MathJax para renderizado de fórmulas LaTeX -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="libro-web.css">
+</head>
+<body>
+
+    <header>
+        <h1>📘 Física Universitaria</h1>
+        <p>Enfoque vectorial - Estilo Serway (formato web continuo)</p>
+        
+        <!-- Botón hamburguesa para móvil -->
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <nav id="mainNav">
+            <a href="#cinematica">Cinemática</a>
+            <a href="#dinamica">Dinámica</a>
+            <a href="#centrales">Fuerzas Centrales</a>
+            <a href="#energia">Energía</a>
+            <a href="#oscilaciones">Oscilaciones</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- CAPÍTULO 1: CINEMÁTICA -->
+        <section id="cinematica" class="capitulo">
+            <h2>📐 Capítulo 1: Cinemática</h2>
+            
+            <article>
+                <h3>1.1 Movimiento Rectilíneo Uniforme (MRU)</h3>
+                <p>El movimiento rectilíneo uniforme se caracteriza por velocidad constante. La posición en función del tiempo está dada por:</p>
+                \[
+                x(t) = x_0 + v\,t
+                \]
+                <p>Donde $x_0$ es la posición inicial y $v$ la velocidad constante.</p>
+            </article>
+
+            <article>
+                <h3>1.2 Movimiento Uniformemente Acelerado (MRUA)</h3>
+                <p>Cuando la aceleración es constante, tenemos las ecuaciones fundamentales:</p>
+                \[
+                v(t) = v_0 + a\,t
+                \]
+                \[
+                x(t) = x_0 + v_0 t + \frac{1}{2} a t^2
+                \]
+                \[
+                v^2 = v_0^2 + 2a (x - x_0)
+                \]
+                <p>Estas ecuaciones permiten resolver cualquier problema de cinemática unidimensional con aceleración constante.</p>
+            </article>
+
+            <div class="ejemplo">
+                <strong>📌 Ejemplo 1.1:</strong> Un móvil parte del reposo con $a = 3\,\text{m/s}^2$. Calcula la distancia recorrida en $t = 4\,\text{s}$:
+                \[
+                x = x_0 + v_0 t + \frac{1}{2}a t^2 = 0 + 0 + \frac{1}{2}(3)(4^2) = 24\,\text{m}
+                \]
+            </div>
+
+            <article>
+                <h3>1.3 Caída Libre</h3>
+                <p>Es un caso particular de MRUA donde $a = -g = -9.8\,\text{m/s}^2$ (tomando positivo hacia arriba).</p>
+                \[
+                y(t) = y_0 + v_0 t - \frac{1}{2} g t^2
+                \]
+            </article>
+
+            <!-- Contenedor para simulador -->
+            <div class="simulador-container" id="sim-mru">
+                <p class="simulador-placeholder">🎮 Simulador de MRU disponible</p>
+                <button onclick="cargarSimulador('mru')">Cargar Simulador</button>
+            </div>
+        </section>
+
+        <!-- CAPÍTULO 2: DINÁMICA -->
+        <section id="dinamica" class="capitulo">
+            <h2>⚙️ Capítulo 2: Dinámica</h2>
+            
+            <article>
+                <h3>2.1 Leyes de Newton</h3>
+                <p><strong>Primera Ley (Inercia):</strong> Un cuerpo permanece en reposo o en movimiento rectilíneo uniforme si la fuerza neta sobre él es cero.</p>
+                
+                <p><strong>Segunda Ley:</strong> La aceleración de un cuerpo es directamente proporcional a la fuerza neta aplicada e inversamente proporcional a su masa:</p>
+                \[
+                \sum \vec{F} = m\,\vec{a}
+                \]
+                
+                <p><strong>Tercera Ley (Acción-Reacción):</strong> Si un cuerpo A ejerce una fuerza sobre B, entonces B ejerce una fuerza igual y opuesta sobre A:</p>
+                \[
+                \vec{F}_{AB} = -\vec{F}_{BA}
+                \]
+            </article>
+
+            <article>
+                <h3>2.2 Ley de Gravitación Universal</h3>
+                <p>Newton demostró que la fuerza gravitatoria entre dos masas es:</p>
+                \[
+                \vec{F}_g = -G \frac{m_1 m_2}{r^2}\,\hat{r}
+                \]
+                <p>Donde $G = 6.674 \times 10^{-11}\,\text{N·m}^2/\text{kg}^2$ es la constante de gravitación universal.</p>
+            </article>
+
+            <article>
+                <h3>2.3 Fuerza de Fricción</h3>
+                <p>La fuerza de fricción se opone al movimiento relativo entre superficies:</p>
+                \[
+                f_s \leq \mu_s N \quad \text{(estática)}
+                \]
+                \[
+                f_k = \mu_k N \quad \text{(cinética)}
+                \]
+            </article>
+
+            <div class="ejemplo">
+                <strong>📌 Ejemplo 2.1:</strong> Un bloque de $5\,\text{kg}$ se empuja con $F = 30\,\text{N}$ sobre superficie sin fricción. La aceleración es:
+                \[
+                a = \frac{F}{m} = \frac{30}{5} = 6\,\text{m/s}^2
+                \]
+            </div>
+        </section>
+
+        <!-- CAPÍTULO 3: FUERZAS CENTRALES -->
+        <section id="centrales" class="capitulo">
+            <h2>🌍 Capítulo 3: Fuerzas Centrales</h2>
+            
+            <article>
+                <h3>3.1 Definición de Fuerza Central</h3>
+                <p>Una fuerza es <strong>central</strong> si cumple dos condiciones:</p>
+                <ol>
+                    <li>Su dirección pasa siempre por un punto fijo (centro de fuerzas)</li>
+                    <li>Su magnitud depende solo de la distancia $r$ al centro</li>
+                </ol>
+                <p>Matemáticamente:</p>
+                \[
+                \vec{F}(r) = F(r)\,\hat{r}
+                \]
+                <p><strong>Ejemplos:</strong> fuerza gravitatoria, fuerza electrostática (ley de Coulomb), fuerza elástica radial.</p>
+            </article>
+
+            <article>
+                <h3>3.2 Conservación del Momento Angular</h3>
+                <p>Para una fuerza central, el torque respecto al centro es cero:</p>
+                \[
+                \vec{\tau} = \vec{r} \times \vec{F} = \vec{r} \times (F(r)\hat{r}) = 0
+                \]
+                <p>Por lo tanto, el momento angular se conserva:</p>
+                \[
+                \vec{L} = \vec{r} \times \vec{p} = \text{constante}
+                \]
+                <p><strong>Consecuencia:</strong> El movimiento ocurre en un plano fijo perpendicular a $\vec{L}$.</p>
+            </article>
+
+            <article>
+                <h3>3.3 Ley de Áreas (Segunda Ley de Kepler)</h3>
+                <p>El radio vector desde el centro de fuerzas al cuerpo barre áreas iguales en tiempos iguales:</p>
+                \[
+                \frac{dA}{dt} = \frac{L}{2m} = \text{constante}
+                \]
+                <p>Esta es una consecuencia directa de la conservación del momento angular.</p>
+            </article>
+
+            <div class="ejemplo">
+                <strong>📌 Ejemplo 3.1 (Órbita Circular):</strong> Para un satélite en órbita circular alrededor de la Tierra, la fuerza gravitatoria proporciona la aceleración centrípeta:
+                \[
+                \frac{GMm}{r^2} = m\frac{v^2}{r} \quad \Rightarrow \quad v = \sqrt{\frac{GM}{r}}
+                \]
+                <p>El período orbital es:</p>
+                \[
+                T = \frac{2\pi r}{v} = 2\pi \sqrt{\frac{r^3}{GM}}
+                \]
+                <p>Esto nos da la <strong>Tercera Ley de Kepler:</strong> $T^2 \propto r^3$</p>
+            </div>
+
+            <article>
+                <h3>3.4 Energía en Sistemas con Fuerzas Centrales</h3>
+                <p>Las fuerzas centrales conservativas tienen una energía potencial asociada $U(r)$. La energía mecánica total se conserva:</p>
+                \[
+                E = K + U(r) = \frac{1}{2}m v^2 + U(r) = \text{constante}
+                \]
+                <p>Para la fuerza gravitatoria:</p>
+                \[
+                U(r) = -\frac{GMm}{r}
+                \]
+                <p>Para órbitas circulares: $E = -\frac{GMm}{2r}$ (energía total negativa indica órbita ligada).</p>
+            </article>
+
+            <article>
+                <h3>3.5 Velocidad de Escape</h3>
+                <p>La velocidad mínima para que un objeto escape del campo gravitatorio (alcanzar $r \to \infty$ con $v = 0$):</p>
+                \[
+                v_{\text{escape}} = \sqrt{\frac{2GM}{r}}
+                \]
+                <p>Para la Tierra ($r = R_T$): $v_{\text{escape}} \approx 11.2\,\text{km/s}$</p>
+            </article>
+
+            <!-- Contenedor para simulador de órbitas -->
+            <div class="simulador-container" id="sim-orbitas">
+                <p class="simulador-placeholder">🪐 Simulador de Órbitas Planetarias</p>
+                <button onclick="cargarSimulador('orbitas')">Cargar Simulador</button>
+            </div>
+        </section>
+
+        <!-- CAPÍTULO 4: ENERGÍA -->
+        <section id="energia" class="capitulo">
+            <h2>⚡ Capítulo 4: Trabajo y Energía</h2>
+            
+            <article>
+                <h3>4.1 Trabajo Mecánico</h3>
+                <p>El trabajo realizado por una fuerza constante es:</p>
+                \[
+                W = \vec{F} \cdot \vec{d} = Fd\cos\theta
+                \]
+                <p>Para una fuerza variable:</p>
+                \[
+                W = \int_{x_1}^{x_2} F(x)\,dx
+                \]
+            </article>
+
+            <article>
+                <h3>4.2 Energía Cinética</h3>
+                <p>La energía cinética de un cuerpo de masa $m$ con velocidad $v$ es:</p>
+                \[
+                K = \frac{1}{2} m v^2
+                \]
+            </article>
+
+            <article>
+                <h3>4.3 Teorema del Trabajo y la Energía</h3>
+                <p>El trabajo neto realizado sobre un cuerpo es igual al cambio en su energía cinética:</p>
+                \[
+                W_{\text{neto}} = \Delta K = K_f - K_i
+                \]
+            </article>
+
+            <article>
+                <h3>4.4 Energía Potencial</h3>
+                <p><strong>Gravitatoria (cerca de la superficie):</strong></p>
+                \[
+                U_g = mgh
+                \]
+                <p><strong>Elástica (resorte):</strong></p>
+                \[
+                U_e = \frac{1}{2}kx^2
+                \]
+            </article>
+
+            <article>
+                <h3>4.5 Conservación de la Energía Mecánica</h3>
+                <p>En ausencia de fuerzas no conservativas:</p>
+                \[
+                E = K + U = \text{constante}
+                \]
+                \[
+                K_i + U_i = K_f + U_f
+                \]
+            </article>
+
+            <div class="ejemplo">
+                <strong>📌 Ejemplo 4.1:</strong> Una masa de $2\,\text{kg}$ cae desde $h = 5\,\text{m}$. Velocidad justo antes de tocar el suelo:
+                \[
+                mgh = \frac{1}{2}mv^2 \quad \Rightarrow \quad v = \sqrt{2gh} = \sqrt{2(9.8)(5)} \approx 9.9\,\text{m/s}
+                \]
+            </div>
+
+            <article>
+                <h3>4.6 Potencia</h3>
+                <p>La potencia es la rapidez con que se realiza trabajo:</p>
+                \[
+                P = \frac{dW}{dt} = \vec{F} \cdot \vec{v}
+                \]
+                <p>Unidad: Watt (W) = J/s</p>
+            </article>
+        </section>
+
+        <!-- CAPÍTULO 5: OSCILACIONES -->
+        <section id="oscilaciones" class="capitulo">
+            <h2>〰️ Capítulo 5: Movimiento Oscilatorio</h2>
+            
+            <article>
+                <h3>5.1 Movimiento Armónico Simple (MAS)</h3>
+                <p>Un sistema realiza MAS cuando la fuerza restauradora es proporcional al desplazamiento:</p>
+                \[
+                F = -kx
+                \]
+                <p>La ecuación de movimiento es:</p>
+                \[
+                x(t) = A\cos(\omega t + \phi)
+                \]
+                <p>Donde $A$ es la amplitud, $\omega = \sqrt{k/m}$ es la frecuencia angular, y $\phi$ la fase inicial.</p>
+            </article>
+
+            <article>
+                <h3>5.2 Período y Frecuencia</h3>
+                \[
+                T = \frac{2\pi}{\omega} = 2\pi\sqrt{\frac{m}{k}}
+                \]
+                \[
+                f = \frac{1}{T} = \frac{\omega}{2\pi}
+                \]
+            </article>
+
+            <article>
+                <h3>5.3 Energía en el MAS</h3>
+                <p>La energía mecánica total es constante:</p>
+                \[
+                E = \frac{1}{2}kA^2 = K + U = \frac{1}{2}mv^2 + \frac{1}{2}kx^2
+                \]
+            </article>
+
+            <div class="ejemplo">
+                <strong>📌 Ejemplo 5.1:</strong> Un resorte con $k = 100\,\text{N/m}$ y masa $m = 0.5\,\text{kg}$. El período es:
+                \[
+                T = 2\pi\sqrt{\frac{m}{k}} = 2\pi\sqrt{\frac{0.5}{100}} \approx 0.44\,\text{s}
+                \]
+            </div>
+
+            <!-- Contenedor para simulador de oscilaciones -->
+            <div class="simulador-container" id="sim-mas">
+                <p class="simulador-placeholder">⚡ Simulador de Movimiento Armónico Simple</p>
+                <button onclick="cargarSimulador('mas')">Cargar Simulador</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 - Física Universitaria estilo Serway | Formato web continuo adaptable</p>
+        <p>Con LaTeX (MathJax) y simuladores interactivos en JavaScript</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="libro-web.js"></script>
+    <script src="simuladores.js"></script>
+</body>
+</html>
