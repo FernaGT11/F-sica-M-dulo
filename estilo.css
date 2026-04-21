@@ -1,0 +1,792 @@
+/* ============================================
+   RESET COMPLETO Y VARIABLES
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-primario: #0b2b44;
+    --color-secundario: #1a4a6f;
+    --color-acento: #ffaa33;
+    --color-texto: #1a2a3a;
+    --color-fondo: #f0f2f5;
+    --color-blanco: #ffffff;
+    --sombra-suave: 0 8px 20px rgba(0, 0, 0, 0.05);
+    --sombra-media: 0 12px 28px rgba(0, 0, 0, 0.1);
+    --radio-grande: 28px;
+    --radio-medio: 18px;
+    --transicion: all 0.3s ease;
+}
+
+/* ============================================
+   TIPOGRAFÍA Y BODY
+   ============================================ */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.7;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   HEADER DELGADO Y FIJO
+   ============================================ */
+header {
+    background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+    color: var(--color-blanco);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0.4rem 1rem;
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Logo del colegio */
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo-colegio {
+    height: 64px;
+    width: auto;
+    object-fit: contain;
+    max-width: 55px; /* Límite de ancho para mantener header compacto */
+}
+
+/* Información del profesor */
+.info-profesor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.1rem;
+}
+
+.info-profesor h1 {
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    letter-spacing: -0.3px;
+    margin: 0;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.datos-contacto {
+    display: flex;
+    gap: 0.8rem;
+    font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+    opacity: 0.9;
+    flex-wrap: wrap;
+    line-height: 1.2;
+}
+
+.nombre-profesor {
+    font-weight: 600;
+    color: var(--color-acento);
+}
+
+.email-profesor {
+    font-weight: 400;
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transicion);
+}
+
+.email-profesor:hover {
+    color: var(--color-acento);
+    text-decoration: underline;
+}
+
+.email-profesor::before {
+    content: "📬 ";
+}
+
+header h1 {
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    letter-spacing: -0.3px;
+    margin: 0;
+    font-weight: 700;
+}
+
+header p {
+    opacity: 0.9;
+    font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+    margin: 0;
+}
+
+/* ============================================
+   NAVEGACIÓN - RESPONSIVE
+   ============================================ */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.3rem;
+    transition: var(--transicion);
+}
+
+nav a {
+    color: var(--color-blanco);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    transition: var(--transicion);
+    font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+    display: inline-block;
+    border: 1px solid transparent;
+    line-height: 1.2;
+}
+
+nav a.activo:hover,
+nav a.activo:focus {
+    background: var(--color-acento);
+    color: var(--color-primario);
+    transform: translateY(-1px);
+    outline: none;
+    border-color: var(--color-acento);
+}
+
+nav a.activo:active {
+    transform: translateY(0);
+}
+
+/* Botones deshabilitados */
+nav a.deshabilitado {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+    position: relative;
+}
+
+nav a.deshabilitado::after {
+    content: "🔒";
+    margin-left: 0.2rem;
+    font-size: 0.7em;
+}
+
+/* Botón hamburguesa para móviles */
+.nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--color-blanco);
+    margin: 5px 0;
+    transition: var(--transicion);
+    border-radius: 2px;
+}
+
+/* ============================================
+   MAIN CONTAINER
+   ============================================ */
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem 2rem;
+    width: 100%;
+    margin-top: 55px; /* Reducido para header más pequeño */
+}
+
+/* ============================================
+   CAPÍTULOS (SECCIONES)
+   ============================================ */
+.capitulo {
+    background: var(--color-blanco);
+    margin-bottom: 2.5rem;
+    padding: 2.5rem 2rem;
+    border-radius: var(--radio-grande);
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicion);
+    scroll-margin-top: 60px; /* Ajustado para header pequeño */
+}
+
+.capitulo:hover {
+    box-shadow: var(--sombra-media);
+    transform: translateY(-2px);
+}
+
+.capitulo h2 {
+    color: #0b5e7e;
+    border-left: 6px solid var(--color-acento);
+    padding-left: 1.2rem;
+    margin-bottom: 2rem;
+    font-size: clamp(1.5rem, 4vw, 1.9rem);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* ============================================
+   ARTÍCULOS DENTRO DE CAPÍTULOS
+   ============================================ */
+article {
+    margin-bottom: 2rem;
+}
+
+article h3 {
+    color: #1a6d8a;
+    margin: 1.5rem 0 0.8rem;
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-weight: 600;
+}
+
+article p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+article ol,
+article ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+article li {
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   EJEMPLOS
+   ============================================ */
+.ejemplo {
+    background: linear-gradient(135deg, #eef4fa 0%, #e3f2fd 100%);
+    border-left: 5px solid var(--color-acento);
+    padding: 1.5rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: var(--radio-medio);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.ejemplo strong {
+    color: #d84315;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+/* Ícono decorativo en ejemplos */
+.ejemplo-con-icono {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 1rem;
+    align-items: start;
+}
+
+.icono-ejemplo {
+    width: 70px;
+    height: 70px;
+    margin: 0.5rem 0;
+}
+
+/* Caja de definición con ícono */
+.definicion {
+    background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+    border-left: 5px solid #ffd700;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: var(--radio-medio);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-size: 0.95rem;
+}
+
+.definicion strong {
+    color: #e65100;
+    font-size: 1.05rem;
+}
+
+@media (max-width: 480px) {
+    .ejemplo-con-icono {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .icono-ejemplo {
+        margin: 0 auto;
+    }
+}
+
+/* ============================================
+   CONTENEDORES DE SIMULADORES
+   ============================================ */
+.simulador-container {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    border: 2px dashed var(--color-acento);
+    border-radius: var(--radio-medio);
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.simulador-placeholder {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e65100;
+    margin-bottom: 1rem;
+}
+
+.simulador-container button {
+    background: var(--color-acento);
+    color: var(--color-primario);
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: var(--transicion);
+    box-shadow: 0 4px 12px rgba(255, 170, 51, 0.3);
+}
+
+.simulador-container button:hover {
+    background: #ffcd6b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 170, 51, 0.4);
+}
+
+.simulador-container button:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   FIGURAS E IMÁGENES
+   ============================================ */
+.figura-ecuacion {
+    margin: 2rem auto;
+    text-align: center;
+    max-width: 100%;
+}
+
+.figura-ecuacion img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radio-medio);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e0e0e0;
+}
+
+.figura-ecuacion figcaption {
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+    color: #555;
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* ============================================
+   NUMERACIÓN DE ECUACIONES
+   ============================================ */
+.ecuacion-numerada {
+    position: relative;
+    margin: 1.5rem 0;
+    padding-right: 3rem;
+}
+
+.ecuacion-numerada .numero-eq {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: rgba(240, 240, 240, 0.8);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .figura-ecuacion img {
+        border-radius: 12px;
+    }
+    
+    .ecuacion-numerada {
+        padding-right: 2.5rem;
+    }
+    
+    .ecuacion-numerada .numero-eq {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.4rem;
+    }
+}
+
+/* ============================================
+   FÓRMULAS LaTeX (MathJax)
+   ============================================ */
+mjx-container {
+    margin: 1.2rem 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.3rem 0;
+}
+
+mjx-container[display="true"] {
+    text-align: center;
+}
+
+/* Scroll horizontal suave en fórmulas largas */
+mjx-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+mjx-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+mjx-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+mjx-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: var(--color-primario);
+    color: #e0e7ff;
+    margin-top: 3rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+footer p {
+    margin: 0.3rem 0;
+}
+
+/* ============================================
+   RESPONSIVE - TABLETS (max-width: 768px)
+   ============================================ */
+@media (max-width: 768px) {
+    .header-container {
+        grid-template-columns: 50px 1fr;
+        gap: 0.8rem;
+        padding: 0.35rem 0.8rem;
+    }
+    
+    nav {
+        grid-column: 1 / -1;
+        justify-content: center;
+        margin-top: 0.3rem;
+    }
+    
+    #logo-colegio {
+        height: 28px;
+        max-width: 50px;
+    }
+    
+    .info-profesor h1 {
+        font-size: 0.9rem;
+    }
+    
+    .datos-contacto {
+        font-size: 0.65rem;
+    }
+
+    main {
+        padding: 0 1.2rem 1.5rem;
+        margin-top: 85px; /* Espacio para header de 2 filas */
+    }
+
+    .capitulo {
+        padding: 1.8rem 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 20px;
+        scroll-margin-top: 90px;
+    }
+
+    .capitulo h2 {
+        font-size: 1.6rem;
+        padding-left: 1rem;
+        border-left-width: 5px;
+    }
+
+    article h3 {
+        font-size: 1.2rem;
+    }
+
+    .ejemplo {
+        padding: 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .simulador-container {
+        padding: 1.5rem;
+    }
+
+    nav a {
+        padding: 0.25rem 0.55rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* ============================================
+   RESPONSIVE - MÓVILES (max-width: 480px)
+   ============================================ */
+@media (max-width: 480px) {
+    .header-container {
+        grid-template-columns: 1fr;
+        padding: 0.3rem 0.8rem;
+        gap: 0.3rem;
+    }
+    
+    .logo-container {
+        position: absolute;
+        top: 0.3rem;
+        left: 0.8rem;
+    }
+    
+    #logo-colegio {
+        height: 26px;
+        max-width: 45px;
+    }
+    
+    .info-profesor {
+        margin-left: 40px; /* Espacio para el logo */
+        margin-top: 0.1rem;
+    }
+    
+    .info-profesor h1 {
+        font-size: 0.8rem;
+    }
+    
+    .datos-contacto {
+        flex-direction: column;
+        gap: 0.1rem;
+        font-size: 0.6rem;
+    }
+
+    /* Mostrar botón hamburguesa */
+    .nav-toggle {
+        display: block;
+    }
+
+    /* Navegación en columna para móvil */
+    nav {
+        flex-direction: column;
+        align-items: stretch;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        margin-top: 0;
+        gap: 0.2rem;
+    }
+
+    nav.active {
+        max-height: 500px;
+        opacity: 1;
+        margin-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        transition: max-height 0.4s ease, opacity 0.3s ease;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem;
+        margin: 0;
+        border-radius: 8px;
+        font-size: 0.7rem;
+    }
+
+    main {
+        padding: 0 1rem 1rem;
+        margin-top: 70px;
+    }
+
+    .capitulo {
+        padding: 1.5rem 1.2rem;
+        margin-bottom: 1.5rem;
+        border-radius: 16px;
+        scroll-margin-top: 75px;
+    }
+
+    .capitulo h2 {
+        font-size: 1.4rem;
+        padding-left: 0.8rem;
+        border-left-width: 4px;
+        margin-bottom: 1.5rem;
+    }
+
+    article {
+        margin-bottom: 1.5rem;
+    }
+
+    article h3 {
+        font-size: 1.1rem;
+        margin: 1rem 0 0.6rem;
+    }
+
+    article ol,
+    article ul {
+        margin-left: 1.2rem;
+    }
+
+    .ejemplo {
+        padding: 1rem;
+        font-size: 0.85rem;
+        margin: 1.2rem 0;
+    }
+
+    .simulador-container {
+        padding: 1.2rem;
+        margin: 1.5rem 0;
+    }
+
+    .simulador-placeholder {
+        font-size: 1rem;
+    }
+
+    .simulador-container button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+        width: 100%;
+    }
+    
+    .profesor-avatar {
+        width: 80px;
+        float: none;
+        display: block;
+        margin: 0 auto 1rem;
+    }
+    
+    .profesor-avatar-inline {
+        width: 60px;
+    }
+
+    footer {
+        padding: 1.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    /* Animación del botón hamburguesa */
+    .nav-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+}
+
+/* ============================================
+   MEJORAS DE ACCESIBILIDAD
+   ============================================ */
+
+/* Estilos para caricaturas del profesor */
+.profesor-avatar {
+    width: 120px;
+    height: auto;
+    float: right;
+    margin: 0 0 1rem 1rem;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 3px solid var(--color-acento);
+    transition: var(--transicion);
+}
+
+.profesor-avatar:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.profesor-avatar-inline {
+    width: 80px;
+    height: auto;
+    display: inline-block;
+    margin: 0 0.5rem;
+    vertical-align: middle;
+    border-radius: 50%;
+    border: 2px solid var(--color-acento);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .profesor-avatar:hover {
+        transform: none;
+    }
+}
+
+/* Modo oscuro (opcional para futuros desarrollos) */
+@media (prefers-color-scheme: dark) {
+    /* Se puede implementar un tema oscuro aquí */
+}
+
+/* ============================================
+   IMPRESIÓN
+   ============================================ */
+@media print {
+    header {
+        position: relative;
+        background: none;
+        color: black;
+    }
+
+    nav,
+    .nav-toggle,
+    .simulador-container button {
+        display: none;
+    }
+
+    .capitulo {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    footer {
+        background: none;
+        color: black;
+    }
+}
